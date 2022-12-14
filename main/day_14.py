@@ -128,18 +128,17 @@ def process_lines_1(lines):
 
     matrix_ = construct_walls(matrix, lines, left)
 
-    for i in range(len(matrix_)):
-        print("".join(matrix_[i]))
+    # for i in range(len(matrix_)):
+    #     print("".join(matrix_[i]))
 
     continue_ = True
     count = 0
     while continue_:
         matrix_, continue_ = drop_sand(matrix_, 500 - left)
         count += 1
-        print(count)
 
-    for i in range(len(matrix_)):
-        print("".join(matrix_[i]))
+    # for i in range(len(matrix_)):
+    #     print("".join(matrix_[i]))
 
     print(count - 1)
 
@@ -149,8 +148,8 @@ def process_lines_2(lines):
 
     print(left, right, max)
 
-    left -= 200
-    right += 200
+    left -= 150
+    right += 90
 
     diff = right - left
     matrix = []
@@ -163,19 +162,17 @@ def process_lines_2(lines):
     for i in range(len(matrix_[0])):
         matrix[len(matrix_) - 1][i] = '#'
 
-    for i in range(len(matrix_)):
-        print("".join(matrix_[i]))
+    # for i in range(len(matrix_)):
+    #     print("".join(matrix_[i]))
 
     continue_ = True
     count = 0
     while continue_:
         matrix_, continue_ = drop_sand_2(matrix_, 500 - left)
         count += 1
-        print(count)
 
-        #
-        # for i in range(len(matrix_)):
-        #     print("".join(matrix_[i]))
+    # for i in range(len(matrix_)):
+    #     print("".join(matrix_[i]))
 
     print(count)
 
@@ -190,5 +187,5 @@ def readfile(s):
 if __name__ == "__main__":
     file = "../resources/14.txt"
 
-    # process_lines_1(readfile(file))
+    process_lines_1(readfile(file))
     process_lines_2(readfile(file))
