@@ -90,12 +90,9 @@ def drop_sand(matrix, in_):
 
 def drop_sand_2(matrix, in_):
     set = False
-    first = True
     s = [0, in_]
     start = [0, in_]
     while not set:
-        # if not first and start == s:
-        #     return matrix, False
         first = False
         next_ = [start[0] + 1, start[1]]
         if matrix[next_[0]][next_[1]] == ".":
@@ -171,8 +168,8 @@ def process_lines_2(lines):
         matrix_, continue_ = drop_sand_2(matrix_, 500 - left)
         count += 1
 
-    # for i in range(len(matrix_)):
-    #     print("".join(matrix_[i]))
+    for i in range(len(matrix_)):
+        print("".join(matrix_[i]))
 
     print(count)
 
