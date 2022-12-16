@@ -76,7 +76,6 @@ def create_labels(g: Graph):
             weight = v.get_weight(n)
             s = sorted([v_key, n.label])
             key = (s[0], s[1])
-            # key.sort()
             labels[key] = weight
     return labels
 
@@ -135,8 +134,6 @@ def shortest_path(g: Graph, f):
 
 
 def calc_flow(G: Graph, p, dict, mins):
-    if p == ["DD", "BB", "JJ", "HH", "EE", "CC"]:
-        print()
     flows = []
     for label in p:
         flows.append(G.get_vertex(label).flow)
@@ -174,8 +171,6 @@ def process_lines_1(lines):
 
     perms = permutations(G)
 
-    print(perms)
-
     t = ["AA"]
     for opt in perms:
         t.append(opt)
@@ -201,8 +196,6 @@ def process_lines_2(lines):
 
     perms = permutations(G)
 
-    print(perms)
-
     t = ["AA"]
     for opt in perms:
         t.append(opt)
@@ -227,8 +220,13 @@ def process_lines_2(lines):
 
     opt_list = [x for _, x in sorted(zip(values, opt_list), reverse=True)]
     values.sort(reverse=True)
-
+    count = 0
     for i in range(len(values)):
+        count += 1
+        if count % 1000000 == 0:
+            print(count)
+        if values[i] < best / 2:
+            break
         for j in range(i + 1, len(values)):
             okay = True
             for a in opt_list[i]:
@@ -242,23 +240,6 @@ def process_lines_2(lines):
                 if s > best:
                     best = s
                     print(s, values[i], values[j])
-
-    print(values)
-
-    for opt_1 in list(itertools.permutations(perms, r=7)):
-        for opt_2 in list(itertools.permutations(perms, r=7)):
-            okay = True
-            for a in opt_1:
-                if a in opt_2:
-                    okay = False
-            if not okay:
-                continue
-            temp_1, spare_1 = calc_flow(G, opt_1, dict, 26)
-            temp_2, spare_2 = calc_flow(G, opt_2, dict, 26)
-
-            if temp_1 + temp_2 > best:
-                best = temp_1 + temp_2
-                print(best, spare_1, spare_2)
 
     print(best)
 
@@ -275,6 +256,7 @@ if __name__ == "__main__":
     start = time.time()
 
     process_lines_1(readfile(file))
+    # have not run to completion, but correct answer printed in ~8 mins
     process_lines_2(readfile(file))
     end = time.time()
     print(end - start)
