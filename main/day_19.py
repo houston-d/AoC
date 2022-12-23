@@ -65,18 +65,9 @@ def calc_max(blueprint, t):
         if current[8] == 0:
             continue
 
-        # if len(seen) % 1000000 == 0:
-        #     print(max_, len(seen))
         if max_ > current[7] * current[8] + current[6] and t < 5:
             continue
-        # if current[7] > max_geode_robot:
-        #     max_geode_robot = current[7]
-        # elif current[7] < (max_geode_robot) // 2:
-        #     continue
 
-        # if current[8] < count:
-        #     print(current[8], len(queue))
-        #     count = current[8]
         # create new ore robot
         o = blueprint[0]
         if current[0] >= o and current[1] < max_ore_prod:
@@ -136,8 +127,7 @@ def process_lines_2(lines):
     blueprints = parse_input(lines)
 
     bp_max = []
-    # for i in range(3):
-    for i in range(len(blueprints)):
+    for i in range(3):
         m = calc_max(blueprints[i], 32)
         print(m, i)
         bp_max.append(m)
@@ -155,10 +145,10 @@ def readfile(s):
 
 
 if __name__ == "__main__":
-    file = "../resources/19_1.txt"
+    file = "../resources/19.txt"
     start = time.time()
 
     process_lines_1(readfile(file))
-    # process_lines_2(readfile(file))
+    process_lines_2(readfile(file))
     end = time.time()
     print(end - start)
